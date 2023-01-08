@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation API</title>
+    <style>
+        body{
+            background-image:linear-gradient(to top, beige, pink);
+            text-align:center;
+            padding:5%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span style="font-size:100px; font-family: Kunstler Script;">Geolocation API</span>
+    </div>
+
+    <div>
+        <button id="location-button" style="padding:10px; font-size:20px">Get My Location</button>
+        <div id="map"></div>
+    </div>
+    <footer style="  position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: pink;
+    color: white;
+    text-align: center;">
+        
+            <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
+              Created by:
+              <a class="text-dark">Chloe Patero</a>
+            </div>
+        
+    </footer>
+    <script>
+
+        // Gets the button object
+        let btn = document.querySelector("#location-button");
+
+        // Sets onclick event for the button
+        btn.onclick = () => {
+            
+            // Gets geolocation data
+            navigator.geolocation.getCurrentPosition(position => {
+
+                // Saves position coordinates
+                const {latitude, longitude} = position.coords;
+
+                // Creates an iframe embedding googlemaps with the acquired lats and longs
+                map.innerHTML = '<iframe width="700" height="300" src="https://maps.google.com/maps?q='+latitude+','+longitude+'&amp;z=15&amp;output=embed"></iframe>';
+            })
+        }
+    </script>
+  </body>
+</html>
